@@ -1,0 +1,57 @@
+extends layout
+
+block content   
+  script.
+    $(document).ready(function(){
+      console.log('masternodes table');
+      var ctable = $('#masternodes-table').dataTable( {
+        autoWidth: true,
+        searching: true,
+        ordering: true,
+        responsive: true,
+        lengthChange: true,
+        processing: false,
+        bPaginate: true,
+        pageLength: 25,
+        order: [[ 0, "asc" ]],
+        ajax: {
+          url: '/ext/lindamasternodes',
+          dataSrc: function ( json ) {
+            for ( var i=0;i<json.data.length; i++ ) {
+              json.data[i]['rank'] = json.data[i]['rank'];
+              json.data[i]['pubkey'] = "<a href='/address/" + json.data[i]['pubkey'] + "'>" + json.data[i]['pubkey'] + "</a>";
+              json.data[i]['address'] = json.data[i]['address'];
+              json.data[i]['lastTimeSeen'] = new Date((json.data[i]['lastTimeSeen']) * 1000).toLocaleString();
+              if (json.data[i]['activeseconds'])
+                json.data[i]['activeseconds'] = json.data[i]['activeseconds'];
+              else
+                json.data[i]['activeseconds'] = '<em>not available</em>';
+            }
+            return json.data;
+          }
+        },
+        columns: [
+          { data: 'rank', width: '15%', className: 'text-center' },
+          { data: 'pubkey', width: '25%', className: 'text-center' },
+          { data: 'address', width: '15%' },
+          { data: 'lastTimeSeen', width:'25%' },
+          { data: 'activeseconds', width:'25%' },
+        ]
+      });
+      setInterval( function () {
+        ctable.api().ajax.reload(null, false);
+      }, 60000 );
+    });
+  .col-md-12(style="margin-bottom: 4%")
+    .panel.panel-default
+      .panel-heading
+        strong #{settings.locale.net_connections}
+      table#masternodes-table.table.table-bordered.table-striped
+        thead
+          tr
+            th #{settings.locale.mn_rank}
+            th.text-center #{settings.locale.mn_pubkey}
+            th.text-center #{settings.locale.mn_address}
+            th.text-center #{settings.locale.mn_lastseen}
+            th.text-center #{settings.locale.mn_activeseconds}
+        tbody.text-center
