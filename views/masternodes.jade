@@ -22,10 +22,18 @@ block content
               json.data[i]['pubkey'] = "<a href='/address/" + json.data[i]['pubkey'] + "'>" + json.data[i]['pubkey'] + "</a>";
               json.data[i]['address'] = json.data[i]['address'];
               json.data[i]['lastTimeSeen'] = new Date((json.data[i]['lastTimeSeen']) * 1000).toLocaleString();
-              if (json.data[i]['activeseconds'])
-                json.data[i]['activeseconds'] = json.data[i]['activeseconds'];
-              else
+              if (json.data[i]['activeseconds']){
+                var seconds = json.data[i]['activeseconds'];
+                var days = Math.floor(seconds / (3600*24));
+                seconds -= days*3600*24;
+                var hrs = Math.floor(seconds / 3600);
+                seconds -= hrs*3600;
+                var mnts = Math.floor(seconds / 60);
+                seconds -= mnts*60;
+                json.data[i]['activeseconds'] = days + " Days, " + hrs + " Hours, " + mnts + " Minutes ";
+              } else {
                 json.data[i]['activeseconds'] = '<em>not available</em>';
+              }
             }
             return json.data;
           }
