@@ -103,15 +103,16 @@
   },
 
   // market settings
-  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
+  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex, coinexchnage
   //default market is loaded by default and determines last price in header
   "markets": {
     "coin": "LINDA",
     "exchange": "BTC",
-    "enabled": ["cryptopia"],
+    "enabled": ["cryptopia","coinexchange"],
     "cryptopia_id": "5246",
     "ccex_key" : "Get-Your-Own-Key",
-    "default": "cryptopia"
+    "default": "cryptopia",
+    "coinexchange_id": "390"
   },
 
   // richlist/top100 settings

@@ -101,7 +101,7 @@
   },
 
   // market settings
-  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
+  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex, coinexchnage
   //default market is loaded by default and determines last price in header
   "markets": {
     "coin": "JBS",
@@ -109,7 +109,8 @@
     "enabled": ["bittrex"],
     "cryptopia_id": "1658",
     "ccex_key" : "Get-Your-Own-Key",
-    "default": "bittrex"
+    "default": "bittrex",
+    "coinexchange_id": "18"
   },
 
   // richlist/top100 settings
