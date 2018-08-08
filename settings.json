@@ -5,7 +5,7 @@
 */
 {
   // name your instance!
-  "title": "LindaCoin Explorer",
+  "title": "Linda Explorer",
 
   "address": "127.0.0.1:3001",
 
@@ -39,18 +39,17 @@
   "theme": "Linda",
 
   // port to listen for requests on.
-  // "port" : 8080,
-  "port" : 8080,
-  "sslport" : 8443,
+  "port" : 80,
+  "sslport" : 443,
 
   // database settings (MongoDB)
   "dbsettings": {
-    "user": "exploreruser",
-    "password": "explorerpw",
+    "user": "explorer_user",
+    "password": "explorer_pw",
     "database": "explorerdb",
     "address": "localhost",
     "port": 27017
-  },
+},
 
   //update script settings
   "update_timeout": 10,
@@ -74,14 +73,16 @@
   "display": {
     "api": true,
     "markets": true,
-    "richlist": false,
+    "richlist": true,
     "twitter": true,
     "facebook": true,
+    "discord": true,
     "googleplus": false,
     "search": true,
     "movement": true,
     "network": true,
     "masternodes": true,
+    "rewards": true,
     "coininfo": true,
     "coinmarketcap": true
   },
@@ -91,7 +92,8 @@
     "show_hashrate": true,
     "show_coin_supply": true,
     "difficulty": "Hybrid",
-    "last_txs": 100
+    "last_txs": 100,
+    "last_txs24": 1500
   },
 
   // ensure links on API page are valid
@@ -103,12 +105,12 @@
   },
 
   // market settings
-  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex, coinexchnage
+  //supported markets: bittrex, poloniex, yobit, graviex, empoex, bleutrade, cryptopia, ccex, coinexchange
   //default market is loaded by default and determines last price in header
   "markets": {
     "coin": "LINDA",
     "exchange": "BTC",
-    "enabled": ["cryptopia","coinexchange"],
+    "enabled": ["cryptopia","coinexchange","graviex"],
     "cryptopia_id": "5246",
     "ccex_key" : "Get-Your-Own-Key",
     "default": "cryptopia",
@@ -168,6 +170,7 @@
   // twitter, facebook, googleplus
   "twitter": "Lindaproject",
   "facebook": "lindacoincurrency",
+  "discord": "VfRXJA9",
   "googleplus": "yourgooglepluspage",
 
   //genesis

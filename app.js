@@ -115,6 +115,18 @@ app.use('/ext/getlasttxs/:min', function(req,res){
   });
 });
 
+app.use('/ext/getrewards/:time', function(req,res){
+  db.get_rewards((req.params.time),function(txs){
+    res.send({data: txs});
+  });
+});
+
+app.use('/ext/getrewardsummary', function(req,res){
+  db.get_rewards_summary(function(rwsummary){
+    res.send({data: rwsummary});
+  });
+});
+
 app.use('/ext/connections', function(req,res){
   db.get_peers(function(peers){
     res.send({data: peers});
@@ -136,6 +148,7 @@ app.set('locale', locale);
 app.set('display', settings.display);
 app.set('markets', settings.markets);
 app.set('twitter', settings.twitter);
+app.set('discord', settings.discord);
 app.set('genesis_block', settings.genesis_block);
 app.set('index', settings.index);
 app.set('heavy', settings.heavy);

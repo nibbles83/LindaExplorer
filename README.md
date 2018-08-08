@@ -1,9 +1,26 @@
-This explorer is forked from Luke's Explorer (https://github.com/iquidus/explorer)  with a bit of flavoring from https://github.com/masterhash-us/Explorer, which seems to be gone now. Cleaning up README.md. History can be found in the first upload commit.
+This explorer is forked from Luke's Explorer (https://github.com/iquidus/explorer)  with a bit of flavoring from https://github.com/masterhash-us/Explorer, which seems to be gone now. 
 
 ### Latest Updates:
 
-(nibbles83)
-*  Added integration with custion Linda wallet RPC masternode commands.
+#### 08/08/2018
+*  Added Rewards tab, crontab script processes last 6 hours(configurable) of PoS rewards. Rewards are calculated as either "stake" or "masternode" based on the rewards size(it is assumed masternodes receive the larger cut.) 
+*  Upgrade of datatables version to better cope with mobile devices and smaller screen sizes.
+*  Reworked the nav-bar so overlapping doesn't occur on small screen devices when lots of menu items are enabled.
+*  Moved current block count and connections to the network display pane.
+*  Added Graviex market support
+*  Added Goolge Analytics support (Modify your ID in public/javascripts/analytics.js)
+*  Added Goolge Adsense support (Modify your ID in public/javascripts/ads.js)
+*  Coinexchange market improvement to group buys & sells.
+*  Fix for issues during reindex command usage
+
+#### 31/05/2018
+*  Added Coinexchange market support
+
+#### 29/05/2018
+*  Added SSL support (Put your root, crt and key files in the root explorer folder. Name them correctly, ssl.key, ssl.cer & root.cer)
+
+#### 17/05/2018
+*  Added integration with custom Linda wallet RPC masternode commands.
 *  Added Linda Masternodes update/cleanup script in native node.js 
 
 Iquidus Explorer - 1.6.1
@@ -37,7 +54,7 @@ Create user with read/write access:
 
 ### Get the source
 
-    git clone https://github.com/SigwoTechnologies/explorer
+    git clone https://github.com/nibbles83/LindaExplorer
 
 ### Install node modules
 
@@ -52,6 +69,10 @@ Create user with read/write access:
 ### Start Explorer
 
     npm start
+
+### To start in production mode, this improves performance, due to less logging.
+
+    NODE_ENV=production npm start
 
 *note: mongod must be running to start the explorer*
 
@@ -93,9 +114,10 @@ sync.js (located in scripts/) is used for updating the local databases. This scr
 
     */1 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js index update > /dev/null 2>&1
     */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/sync.js market > /dev/null 2>&1
+    */2 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/rewards.js update > /dev/null 2>&1
     */5 * * * * cd /path/to/explorer && /usr/bin/nodejs scripts/peers.js > /dev/null 2>&1
 
-*The below crontab entry populates the database using rpc command "masternode status-all". This RPC is custom made and may only work when built from my Linda wallet repository (https://github.com/nibbles83/Linda). Future official Linda version may contain something similar.*
+*The below crontab entry populates the database using rpc command "masternode status-all". This RPC is custom made and will only work when built from my Linda wallet repository (https://github.com/nibbles83/Linda). Future official Linda version may also contain something similar.*
 
     */5 * * * * cd /root/explorer_2 && /usr/bin/nodejs scripts/lindamasternodes.js clean > /dev/null 2>&1
     */5 * * * * cd /root/explorer_2 && /usr/bin/nodejs scripts/lindamasternodes.js update > /dev/null 2>&1

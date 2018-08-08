@@ -2,7 +2,8 @@ extends layout
 
 block content
   - var time = format_unixtime(block.time)
-  .col-xs-12.col-md-10.col-md-offset-1
+  script(src='/javascripts/ads.js')
+  .col-xs-12.col-md-10.col-md-offset-1(style="margin-top: 1%")
     .well.well-sm.hidden-lg.hidden-md(style='word-wrap:break-word;')
       | #{block.hash}
     .panel.panel-default

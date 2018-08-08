@@ -4,6 +4,7 @@ html
     title= settings.title
     link(rel='stylesheet', href='/themes/#{settings.theme}/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/jqplot/jquery.jqplot.css')
+    link(rel='stylesheet', href='//cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css')
     link(rel='stylesheet', href='//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Overpass+Mono')
@@ -18,8 +19,8 @@ html
     script(src='/vendor/jqplot/plugins/jqplot.barRenderer.min.js')
     script(src='/vendor/jqplot/plugins/jqplot.categoryAxisRenderer.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js')
-    script(src='//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js')  
-    script(src='//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js')
+    script(src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js')  
+    script(src='//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js')
     script(src='//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.js')
     script(src='/javascripts/chart.js')
     script(src='/javascripts/analytics.js')
@@ -30,7 +31,9 @@ html
           $.ajax({url: '/ext/summary', success: function(json){
             $("#supply").text(json.data[0].supply);
             $("#difficulty").text(json.data[0].difficulty);
-            $("#masternodeCount").text(json.data[0].masternodeCount);
+            $("#masternodeOnlineCount").text(json.data[0].masternodeCount);
+            $("#masternodeCount").text(json.data[0].masternodeTotalCount);
+            //$("#masternodeCount").text(json.data[0].masternodeCount);
             //$("#masternodeOnlineCount").text(json.data[0].masternodeOnlineCount);
             $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
             $("#hashrate").text(json.data[0].hashrate);
@@ -146,6 +149,11 @@ html
                 a.navbar-link.loading(href='/masternodes')
                   span.fa.fa-server
                   span.menu-text #{settings.locale.menu_masternodes}
+            if settings.display.rewards == true
+              li#masternodes
+                a.navbar-link.loading(href='/rewards')
+                  span.fa.fa-star
+                  span.menu-text #{settings.locale.menu_rewards}
             if settings.display.coininfo == true
               li#coininfo
                 a.navbar-link.loading(href='/coininfo')
@@ -156,7 +164,7 @@ html
                 a.navbar-link(href='/info')
                   span.glyphicon.glyphicon-info-sign
                   span.menu-text #{settings.locale.menu_api}
-          ul.nav.nav-bar.navbar-right
+          ul.nav.nav-bar.navbar-right.hidden-xs.hidden-sm.hidden-md
             img(src='#{settings.logo}', style='margin-top:4px;height:40px;')
 
     .col-md-12
@@ -193,9 +201,6 @@ html
                       ="$"
                       span#cmc_volume_24h -
                       =" USD"
-        else
-          .col-lg-3.col-md-0
-
         if settings.index.show_coin_supply
           - supplyPanelSize = settings.display.coinmarketcap == true ? "col-lg-2 col-md-4 col-sm-4" : "col-lg-3 col-md-4 col-sm-4"
           div(class=supplyPanelSize)
@@ -210,14 +215,20 @@ html
           .col-lg-3.col-md-4.col-sm-4
             .panel.panel-primary.panel-summary
               .panel-heading
-                span #{settings.locale.network}
+                .row(style="margin:0;padding-left:0;padding-right:0")
+                  .col-xs-3
+                    span #{settings.locale.network}
+                  .col-xs-3
+                      label#lblBlockcount.label.label-default.text-center
+                        span#lblBlockcountValue -.text-center
+                          span  blocks.text-center
+                      label#lblConnections.label.label-default -.pull-right
               .panel-body(style="padding-top: 25px")
                 row.text-center
                   .col-md-12
                     h1
                       if settings.index.difficulty == 'Hybrid'
                         label#hashrate -
-                        <br>
                         label#lblX1
                       else
                         label#hashrate -
@@ -249,7 +260,10 @@ html
               .panel-body(style="padding-top: 25px")
                 row.text-center
                   .col-md-12
-                    h1#masternodeCount -
+                    h1 Online now: &nbsp; 
+                      label#masternodeOnlineCount
+                    h3 48hr total: &nbsp;
+                      label#masternodeCount 
 
     .col-md-12
       .row.text-center(style='margin-top:10px;margin-bottom:20px;')
@@ -259,7 +273,7 @@ html
             input.form-control(type='text', name='search', placeholder='#{searchPlaceholder}', style='min-width:80%;margin-right:5px;')
             button.btn.btn-success(type='submit') #{settings.locale.ex_search_button}
     block content
-    .navbar.navbar-default.navbar-fixed-bottom.hidden-xs
+    .navbar.navbar-default.navbar-fixed-bottom.hidden-xs.hidden-sm.hidden-md
       .col-md-4
         if settings.display.twitter
           ul.nav.navbar-nav
@@ -276,6 +290,11 @@ html
             li.pull-left
               a#googleplus-icon(href="https://plus.google.com/#{settings.googleplus}", target='_blank')
                 span.glyphicon.fa.fa-google-plus
+        if settings.display.discord
+          ul.nav.navbar-nav
+            li.pull-left
+              a#discord-icon(href="https://discord.gg/#{settings.discord}", target='_blank')
+                span.glyphicon.fa.fa-comment
         ul.nav.navbar-nav(style='width:inherit;')
           li(style='padding-left:10px;padding-top:10px;color:#ffffff;word-wrap:break-all;width:350px;') Linda: LYbCX9gmBdAJXWGrnoKkZb1xWR5ixBAemY
           li(style='padding-left:10px;padding-bottom:10px;color:#ffffff;word-wrap:break-all;width:350px;') BTC: 37UjqmVFXAxYxcQUGk9ayDvCHgdCQGPe7R
@@ -284,11 +303,3 @@ html
           li.text-center(style='margin-left:80px;margin-right:80px;')
             p(style='margin-top:15px;') 
               a.navbar-link(href='https://github.com/iquidus/explorer', target='_blank') Powered by Iquidus Explorer 
-      span.connections
-        label#lblBlockcount.label.label-default
-          span#lblBlockcountValue -
-          if settings.baseType === 'ripple'
-            span  ledgers
-          else
-            span  blocks
-        label#lblConnections.label.label-default -

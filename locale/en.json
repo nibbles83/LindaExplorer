@@ -14,6 +14,7 @@
     "menu_node": "Nodes",
     "menu_network": "Network",
     "menu_masternodes": "Masternodes",
+    "menu_rewards": "Rewards",
 
     // explorer view
     "ex_title": "Block Explorer",
@@ -89,6 +90,7 @@
 
     // api view
     "api_title": "API Documentation",
+    "api_externaladdress": "lindaexplorer.kdhsolutions.co.uk",
     "api_message": "The block explorer provides an API allowing users and/or applications to retrieve information from the network without the need for a local wallet.",
     "api_calls": "API Calls",
     "api_getnetworkhashps": "Returns the current network hashrate. (hash/s)",
@@ -139,6 +141,8 @@
     "cryptopia": "Cryptopia",
     "ccex": "C-Cex",
     "coinexchange": "CoinExchange",
+    "graviex": "Graviex",
+
 
     // Heavy rewards view
     "heavy_title": "Reward/voting information",

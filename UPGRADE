@@ -1,5 +1,20 @@
 Note: All updates require the explorer to be restarted
 
+1.6.1 -> 1.7.0
+*  Added Rewards tab, crontab script processes last 6 hours(configurable) of PoS rewards. Rewards are calculated as either "stake" or "masternode" based on the rewards size(it is assumed masternodes receive the larger cut.)
+*  Upgrade of datatables version to better cope with mobile devices and smaller screen sizes.
+*  Reworked the nav-bar so overlapping doesn't occur on small screen devices when lots of menu items are enabled.
+*  Moved current block count and connections to the network display pane.
+*  Added Graviex market support
+*  Added Goolge Analytics support (Modify your ID in public/javascripts/analytics.js)
+*  Added Goolge Adsense support (Modify your ID in public/javascripts/ads.js)
+*  Coinexchange market improvement to group buys & sells.
+*  Fix for issues during reindex command usage
+*  Added Coinexchange market support
+*  Added SSL support
+*  Added integration with custom Linda wallet RPC masternode commands.
+*  Added Linda Masternodes update/cleanup script in native node.js
+
 1.6.0 -> 1.6.1
 * Add new cryptsy_id and hashrate_units settings (see settings.json.template)
 * remove tmp/market.pid (if it exists)

@@ -3,9 +3,8 @@ extends layout
 block content
   - var sent = address.sent /100000000
   - var received = address.received / 100000000
-    img.qrcode.pull-right.hidden-xs(style='margin-top:10%;' src='/qr/#{address.a_id}')
-  script(src='/javascripts/ads.js')
-  .col-xs-12.col-md-10.col-md-offset-1(style="margin-top: 1%")
+    img.qrcode.pull-right.hidden-xs(src='/qr/#{address.a_id}')
+  .col-xs-12.col-md-10.col-md-offset-1
     .panel.panel-default.panel-address-summary
       .panel-heading(style='position:relative;')        
         strong.mono #{address.a_id}

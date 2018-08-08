@@ -80,6 +80,7 @@
     "movement": true,
     "network": true,
     "masternodes": false,
+    "rewards": false,
     "coininfo": false,
     "coinmarketcap": false
   },

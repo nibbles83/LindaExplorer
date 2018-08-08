@@ -1,7 +1,8 @@
 extends layout
 
-block content   
-  .col-md-12(style="margin-bottom: 4%")
+block content
+  script(src='/javascripts/ads.js')
+  .col-md-12(style="margin-bottom: 4%;margin-top:1%;")
     .panel.panel-primary.coin-info
       .panel-heading
         strong #{settings.locale.coininfo_head}
@@ -52,4 +53,4 @@ block content
                         span  / $#{nodeWorthUsd}
                     h5.sub Node worth
                 .row
-  script(src='/javascripts/ads.js')
+

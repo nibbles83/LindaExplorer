@@ -1,0 +1,134 @@
+extends layout
+
+block content
+  script.
+    $(document).ready(function(){
+      function update_rewardstats(){
+          $.ajax({url: '/ext/getrewardsummary', success: function(json){
+            $("#mnrewardcount").text(json.data[0].mnrewardcount);
+            $("#mnrewardtotal").text(parseFloat(json.data[0].mnrewardtotal).toFixed(8));
+            var mnaverage = json.data[0].mnrewardtotal / json.data[0].mnrewardcount
+            $("#mnaverage").text(parseFloat(mnaverage).toFixed(8));
+            $("#mnrewardbig").text(json.data[0].mnrewardbig);
+            $("#mnrewardsmall").text(json.data[0].mnrewardsmall);
+            $("#stakecount").text(json.data[0].stakecount);
+            $("#staketotal").text(parseFloat(json.data[0].staketotal).toFixed(8));
+            var stakeaverage = json.data[0].staketotal / json.data[0].stakecount
+            $("#stakeaverage").text(parseFloat(stakeaverage).toFixed(8));
+            $("#stakebig").text(json.data[0].stakebig);
+            $("#stakesmall").text(json.data[0].stakesmall);
+          }});
+      }
+      var rtable = $('#recent-table').dataTable( {  
+        autoWidth: true,      
+        searching: true,
+        ordering: true,
+        responsive: true,
+        lengthChange: true,
+        processing: true,
+        order: [[ 0, "desc" ]],
+        ajax: {
+          url: '/ext/getrewards/24',
+          dataSrc: function ( json ) {
+            var return_data = new Array();
+            for ( var i=0;i<json.data.length; i++ ) {
+              if (!json.data[i]['txid']) {
+                return_data.push({
+                  'blockindex': "",
+                  'txid': "no transactions",
+                  'address': "",
+                  'total': "",
+                  'timestamp': ""
+                });
+              } else {
+                    var amount = json.data[i]['amount'] / 100000000;
+                    var timestamp = new Date((json.data[i]['timestamp']) * 1000).toLocaleString();
+                    return_data.push({
+                      'blockindex': "<a href='/block/" + json.data[i]['blockhash'] + "'>" + json.data[i]['blockindex'] + "</a>",
+                      'txid': "<a href='/tx/" + json.data[i]['txid'] + "' class='mono'>" + json.data[i]['txid'] + "</a>",
+                      'address': "<a href='/address/" + json.data[i]['address'] + "'>" + json.data[i]['address'] + "</a>",
+                      'total': amount.toFixed(8),
+                      'rewardType': json.data[i]['rewardType'],
+                      'timestamp': timestamp
+                    });
+              }
+            }
+            return return_data;
+          }
+        },
+        columns: [
+          { data: 'blockindex', width: '8%' },
+          { data: 'txid', width: '40%' },
+          { data: 'address', width:'5%' },
+          { data: 'total', width: '15%' },
+          { data: 'rewardType', width:'5%' },
+          { data: 'timestamp', width: '25%' },
+        ]
+      });
+      setInterval( function () {
+        rtable.api().ajax.reload(null, false);
+        update_rewardstats();
+      }, 60000 );
+      update_rewardstats();
+    });
+  script(src='/javascripts/ads.js') 
+  .row.text-center
+    .col-lg-6.col-md-6.col-sm-6.col-xs-6(style="margin-top: 1%")
+      .panel.panel-primary.panel-summary
+        .panel-heading
+          span Last 24hr Masternode Stats
+        .panel-body.text-center
+          .row.text-center
+            .col-sm-4
+              h5 Total Value:
+                label#mnrewardtotal
+              h5 Masternode Rewards:
+                label#mnrewardcount
+            .col-sm-4
+              h5 Largest Masternode Reward:
+                label#mnrewardbig
+              h5 Smallest Masternode Reward:
+                label#mnrewardsmall
+            .col-sm-4
+              h5 Masternode Average:
+                label#mnaverage
+    .col-lg-6.col-md-6.col-sm-6.col-xs-6(style="margin-top: 1%")
+      .panel.panel-primary.panel-summary
+        .panel-heading
+          span Last 24hr Staking Stats
+        .panel-body.text-center
+          .row.text-center
+            .col-sm-4
+              h5 Total Value:
+                label#staketotal
+              h5 Stake Rewards:
+                label#stakecount
+            .col-sm-4
+              h5 Largest Stake Reward:
+                label#stakebig
+              h5 Smallest Stake Reward:
+                label#stakesmall
+            .col-sm-4
+              h5 Stake Average:
+                label#stakeaverage
+
+  .col-md-12(style="margin-top: 1%")
+    .panel.panel-default
+      .panel-heading
+        strong #{settings.locale.ex_latest_transactions}
+      table#recent-table.table.table-bordered.table-striped
+        thead
+          tr
+            if settings.baseType === 'ripple'
+              th.text-center #{settings.locale.ex_ledger}
+            else
+              th.text-center #{settings.locale.ex_block}
+            th.hidden-xs.text-center #{settings.locale.tx_hash}
+            th.hidden-xs.text-center #{settings.locale.tx_recipients}
+            th.text-center #{settings.locale.mkt_amount} (#{settings.symbol})
+            th.text-center Reward Type
+            th.text-center #{settings.locale.timestamp}
+        tbody.text-center
+    .footer-padding
+      
+              

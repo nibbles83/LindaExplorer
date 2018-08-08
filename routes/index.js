@@ -208,6 +208,10 @@ router.get('/masternodes', function(req, res) {
   res.render('masternodes', {active: 'masternodes'});
 });
 
+router.get('/rewards', function(req, res) {
+  res.render('rewards', {active: 'rewards'});
+});
+
 router.get('/coininfo', function(req, res) {
   if (settings.display.coininfo === false) {
     route_get_index(res, null);
@@ -414,6 +418,7 @@ router.get('/ext/summary', function(req, res) {
         lib.get_blockcount(function(blockcount) {
           lib.get_masternodecount(function(masternodecount){
             //lib.get_masternodeonlinecount(function(masternodeonlinecount){
+            db.get_linda_masternodes_count(function(mncount){
               db.get_cmc(settings.coinmarketcap.ticker, function(cmc){
                 db.get_stats(settings.coin, function (stats) {
                   if (hashrate == 'There was an error. Check your console.') {
@@ -424,6 +429,7 @@ router.get('/ext/summary', function(req, res) {
                     difficultyHybrid: difficultyHybrid,
                     masternodeCount: masternodecount,
                     //masternodeOnlineCount: masternodeonlinecount,
+                    masternodeTotalCount: mncount,
                     supply: formatNum(stats.supply, { maxFraction: 4 }),
                     hashrate: hashrate,
                     lastPriceBtc: formatNum(stats.last_price, { maxFraction: 8 }),
@@ -437,6 +443,7 @@ router.get('/ext/summary', function(req, res) {
                 });
               });
             //});
+            });
           });
         });
       });

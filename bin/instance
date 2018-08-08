@@ -4,7 +4,6 @@ var settings = require('../lib/settings');
 var db = require('../lib/database');
 var app = require('../app');
 var https = require('https');
-var http = require('http');
 var fs = require('fs');
 
 app.set('port', process.env.PORT || settings.port);
@@ -69,16 +68,16 @@ db.connect(dbString, function() {
       });
     }
   });
-  
-  var options = {
-    key: fs.readFileSync('lindaexplorer.kdhsolutions.co.uk.key'),
-    cert: fs.readFileSync('lindaexplorer.kdhsolutions.co.uk.cer'),
-    ca: fs.readFileSync('sslforfreeCA.cer')
-  };
 
   var server = app.listen(app.get('port'), function() {
     debug('Express server listening on port ' + server.address().port);
   });
+
+  var options = {
+     key: fs.readFileSync('ssl.key'),
+     cert: fs.readFileSync('ssl.cer'),
+     ca: fs.readFileSync('root.cer')
+  };
   
   var secureserver = https.createServer(options, app).listen(app.get('sslport'), function() {
     debug('Express server listening on port ' + secureserver.address().port);

@@ -81,8 +81,8 @@ block content
         .alert.alert-warning.alert-dismissable(role='alert')
           button.close(type='button', data-dismiss='alert') ×
           strong #{settings.locale.ex_warning} #{warning}
-  
-  .col-md-12
+  script(src='/javascripts/ads.js')  
+  .col-md-12(style="margin-top: 1%")
     .panel.panel-default
       .panel-heading
         strong #{settings.locale.ex_latest_transactions}
