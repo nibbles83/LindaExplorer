@@ -1,4 +1,4 @@
-This explorer is forked from Luke's Explorer (https://github.com/iquidus/explorer)  with a bit of flavoring from https://github.com/masterhash-us/Explorer, which seems to be gone now. 
+This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/explorer) with a bit of flavoring from https://github.com/masterhash-us/Explorer, which seems to be gone now. 
 
 ### Latest Updates:
 
@@ -11,7 +11,9 @@ This explorer is forked from Luke's Explorer (https://github.com/iquidus/explore
 *  Added Goolge Analytics support (Modify your ID in public/javascripts/analytics.js)
 *  Added Goolge Adsense support (Modify your ID in public/javascripts/ads.js)
 *  Coinexchange market improvement to group buys & sells.
-*  Fix for issues during reindex command usage
+*  Bugfix for issues during reindex command usage
+*  Bugfix for issue when orphan blocks were getting submitted to the DB.
+*  version increment
 
 #### 31/05/2018
 *  Added Coinexchange market support
@@ -23,7 +25,7 @@ This explorer is forked from Luke's Explorer (https://github.com/iquidus/explore
 *  Added integration with custom Linda wallet RPC masternode commands.
 *  Added Linda Masternodes update/cleanup script in native node.js 
 
-Iquidus Explorer - 1.6.1
+Linda Explorer - 1.7.0
 ================
 
 An open source block explorer written in node.js.
