@@ -15,8 +15,8 @@ block content
             $("#staketotal").text(parseFloat(json.data[0].staketotal).toFixed(8));
             var stakeaverage = json.data[0].staketotal / json.data[0].stakecount
             $("#stakeaverage").text(parseFloat(stakeaverage).toFixed(8));
-            $("#stakebig").text(json.data[0].stakebig);
-            $("#stakesmall").text(json.data[0].stakesmall);
+            $("#stakebig").text(parseFloat(json.data[0].stakebig).toFixed(8));
+            $("#stakesmall").text(parseFloat(json.data[0].stakesmall).toFixed(8));
           }});
       }
       var rtable = $('#recent-table').dataTable( {  
