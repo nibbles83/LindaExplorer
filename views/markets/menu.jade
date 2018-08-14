@@ -3,6 +3,44 @@ extends ../layout
 block content
   script.
     $(document).ready(function(){     
+      var rtable = $('#recent-table').dataTable( {
+        autoWidth: true,
+        info: false,
+        paging: false,
+        searching: false,
+        ordering: false,
+        responsive: true,
+        lengthChange: false,
+        processing: true,
+        order: [[ 0, "asc" ]],
+        ajax: {
+          url: '/ext/getarbitrage',
+          dataSrc: function ( json ) {
+           var return_data = new Array();
+           for ( var i=0;i<json.data.length; i++ ) {
+             if (!json.data[i].summary.market ) {
+               return_data.push({
+                 'market': "no exchange data",
+               });
+             } else {
+               return_data.push({
+                 'market': json.data[i].summary.market,
+                 'last': json.data[i].summary.last
+               });
+             }
+           }
+           return return_data;
+         }
+       },
+       columns: [
+         { data: 'market', width: '10%' },
+         { data: 'last', width: '10%' }
+       ]
+      });
+      setInterval( function () {
+        rtable.api().ajax.reload(null, false);
+      }, 60000 );
+
       $('.order-table').dataTable( {
         info: false,
         paging: false,
@@ -26,6 +64,16 @@ block content
       });
     });
   script(src='/javascripts/ads.js')
+  .col-md-6(style="margin-top: 1%; margin-left: 25%")
+    .panel.panel-primary
+      .panel-heading
+        strong #{settings.locale.mkt_arbitrage}
+      table#recent-table.table.table-bordered.table-striped
+       thead
+         tr
+           th.text-center #{settings.locale.mkt_market}
+           th.text-center #{settings.locale.mkt_last}
+       tbody.text-center
   .col-xs-12.col-md-12(style="margin-top: 1%")
     .hidden-xs.nav.navbar.navbar-default(role='navigation' id='market_menu')
       .container-fluid

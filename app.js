@@ -127,6 +127,12 @@ app.use('/ext/getrewardsummary', function(req,res){
   });
 });
 
+app.use('/ext/getarbitrage', function(req,res){
+  db.get_arbitrage(function(arbitrage){
+    res.send({data: arbitrage});
+  });
+});
+
 app.use('/ext/connections', function(req,res){
   db.get_peers(function(peers){
     res.send({data: peers});

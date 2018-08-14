@@ -130,6 +130,8 @@
     "mkt_trade_history": "Trade History",
     "mkt_type": "Type",
     "mkt_time_stamp": "Time Stamp",
+    "mkt_market": "Exchange",
+    "mkt_arbitrage": "Exchange arbitrage",
 
     // Markets
     "poloniex": "Poloniex",
