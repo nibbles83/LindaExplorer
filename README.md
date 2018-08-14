@@ -2,6 +2,11 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 
 ### Latest Updates:
 
+#### 14/08/2018
+*  Addition of Exchange markets arbitration data.
+*  Bugfix in rewards page for displaying small values.
+*  Change of Cryptopia 24hr volume stats to BTC
+
 #### 08/08/2018
 *  Added Rewards tab, crontab script processes last 6 hours(configurable) of PoS rewards. Rewards are calculated as either "stake" or "masternode" based on the rewards size(it is assumed masternodes receive the larger cut.) 
 *  Upgrade of datatables version to better cope with mobile devices and smaller screen sizes.

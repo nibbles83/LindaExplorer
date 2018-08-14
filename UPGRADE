@@ -1,5 +1,10 @@
 Note: All updates require the explorer to be restarted
 
+1.7.0 -> 1.7.1
+*  Addition of Exchange markets arbitration data.
+*  Bugfix in rewards page for displaying small values.
+*  Change of Cryptopia 24hr volume stats to BTC
+
 1.6.1 -> 1.7.0
 *  Added Rewards tab, crontab script processes last 6 hours(configurable) of PoS rewards. Rewards are calculated as either "stake" or "masternode" based on the rewards size(it is assumed masternodes receive the larger cut.)
 *  Upgrade of datatables version to better cope with mobile devices and smaller screen sizes.

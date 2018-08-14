@@ -116,7 +116,7 @@
     "mkt_no_chart": "Chart data is not available via markets API.",
     "mkt_high": "High",
     "mkt_low": "Low",
-    "mkt_volume": "Volume",
+    "mkt_volume": "Volume BTC",
     "mkt_top_bid": "Top Bid",
     "mkt_top_ask": "Top Ask",
     "mkt_last": "Last Price",
