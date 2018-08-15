@@ -81,8 +81,7 @@
     "rl_top100": "Top 76-100",
     "rl_hundredplus": "101+",
 
-    "net_connections": "Connections",
-    "net_masternodes": "Masternodes",
+    "net_connections": "Masternodes",
     "net_address": "Address",
     "net_protocol": "Protocol",
     "net_subversion": "Sub-version",
@@ -138,6 +137,7 @@
     "poloniex": "Poloniex",
     "bittrex": "Bittrex",
     "bleutrade": "Bleutrade",
+    "btcalpha": "BTC-Alpha",
     "yobit": "Yobit",
     "empoex": "Empoex",
     "cryptsy": "Cryptsy",

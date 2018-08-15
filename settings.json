@@ -105,7 +105,7 @@
   },
 
   // market settings
-  //supported markets: bittrex, poloniex, yobit, graviex, empoex, bleutrade, cryptopia, ccex, coinexchange
+  //supported markets: bittrex, btcalpha, poloniex, yobit, graviex, empoex, bleutrade, cryptopia, ccex, coinexchange
   //default market is loaded by default and determines last price in header
   "markets": {
     "coin": "LINDA",

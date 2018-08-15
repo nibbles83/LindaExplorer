@@ -5,7 +5,7 @@ block market_view
     .col-md-12  
       .panel.panel-default
         .panel-heading
-          strong #{settings.locale.graviex} - #{marketdata.coin}/#{marketdata.exchange} - #{settings.locale.mkt_hours}
+          strong #{settings.locale.btcalpha} - #{marketdata.coin}/#{marketdata.exchange} - #{settings.locale.mkt_hours}
           a(href='#')
             span.fa.fa-line-chart.pull-right.view-chart-disabled.iquidus.market-toggle(data-toggle='tooltip', data-placement='bottom', title='#{settings.locale.mkt_no_chart}') 
         table.table.table-bordered.summary-table 
@@ -26,11 +26,11 @@ block market_view
               td.hidden-xs #{marketdata.data.summary.bid}
               td.hidden-xs #{marketdata.data.summary.ask}
               td.hidden-xs #{marketdata.data.summary.last}
-              - var graviex_change =  parseFloat(marketdata.data.summary.change).toFixed(4);
-              if graviex_change >= 0
-                td.success +#{graviex_change} %
+              - var btcalpha_change =  (marketdata.data.summary.change).toFixed(4);
+              if btcalpha_change >= 0
+                td.success +#{btcalpha_change} %
               else
-                td.danger #{graviex_change} %
+                td.danger #{btcalpha_change} %
   .row
     .col-md-6.col-xs-12
       .panel.panel-default
@@ -86,8 +86,8 @@ block market_view
               th.hidden-xs #{settings.locale.mkt_time_stamp}
           tbody
             each order in marketdata.data.history
-              if order.ordertype == 'Buy'
-                tr
+              if order.ordertype == 'buy'
+                tr.success
                   td.hidden-xs
                     =order.ordertype
                   td
@@ -99,9 +99,9 @@ block market_view
                   td.hidden-xs
                     =(new Date(order.timestamp * 1000).toUTCString())
               else
-                tr
+                tr.danger 
                   td.hidden-xs
-                    = "N/A"
+                    =order.ordertype
                   td
                     =order.amount
                   td
@@ -112,3 +112,4 @@ block market_view
                      =(new Date(order.timestamp * 1000).toUTCString())
 
       .footer-padding
+
