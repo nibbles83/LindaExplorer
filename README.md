@@ -2,6 +2,10 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 
 ### Latest Updates:
 
+#### 15/08/2018
+*  Addition of BTC-Alpha market.
+*  Formatting fix fro Graviex market.
+
 #### 14/08/2018
 *  Addition of Exchange markets arbitration data.
 *  Bugfix in rewards page for displaying small values.
