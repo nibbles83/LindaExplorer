@@ -4,7 +4,7 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 
 #### 15/08/2018
 *  Addition of BTC-Alpha market.
-*  Formatting fix fro Graviex market.
+*  Formatting fix for Graviex market.
 
 #### 14/08/2018
 *  Addition of Exchange markets arbitration data.
@@ -141,7 +141,7 @@ Iquidus Explorer is intended to be generic so it can be used with any wallet fol
 
 ### Donate (Left Luke's addresses, please contribute!)  
 Nibbles Address
-    LINDA: LgCJiV6aeqNsAdiGTAb3gqwYnizUMzD1Tq
+    LINDA: LYbCX9gmBdAJXWGrnoKkZb1xWR5ixBAemY
     BTC: 37UjqmVFXAxYxcQUGk9ayDvCHgdCQGPe7R
 
 Lukes Addresses
