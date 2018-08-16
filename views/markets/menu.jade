@@ -26,6 +26,8 @@ block content
                return_data.push({
                  'market': json.data[i].summary.market,
                  'last': json.data[i].summary.last,
+                 'bid': json.data[i].summary.bid,
+                 'ask': json.data[i].summary.ask,
                  'volume': json.data[i].summary.volume
                });
              }
@@ -36,6 +38,8 @@ block content
        columns: [
          { data: 'market', width: '10%' },
          { data: 'last', width: '10%' },
+         { data: 'bid', width: '10%' },
+         { data: 'ask', width: '10%' },
          { data: 'volume', width: '5%' }
        ]
       });
@@ -75,6 +79,8 @@ block content
          tr
            th.text-center #{settings.locale.mkt_market}
            th.text-center #{settings.locale.mkt_last}
+           th.text-center #{settings.locale.mkt_bid}
+           th.text-center #{settings.locale.mkt_ask}
            th.text-center #{settings.locale.mkt_volume}
        tbody.text-center
   .col-xs-12.col-md-12(style="margin-top: 1%")
