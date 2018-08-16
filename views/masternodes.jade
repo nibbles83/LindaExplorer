@@ -36,6 +36,7 @@ block content
                   json.data[i]['enabled'] = "Disabled";
                 }
               }
+              json.data[i]['protocolVersion'] = json.data[i]['protocolVersion'];
               json.data[i]['lastTimeSeen'] = new Date((json.data[i]['lastTimeSeen']) * 1000).toLocaleString();
               if (json.data[i]['activeseconds']){
                 var seconds = json.data[i]['activeseconds'];
@@ -58,6 +59,7 @@ block content
           { data: 'pubkey', width: '25%', className: 'text-center' },
           { data: 'address', width: '15%' },
           { data: 'enabled', width: '8%' },
+          { data: 'protocolVersion', width: '8%' },
           { data: 'lastTimeSeen', width:'15%' },
           { data: 'activeseconds', width:'25%' },
         ]
@@ -70,7 +72,7 @@ block content
   .col-md-12(style="margin-bottom: 4%;margin-top: 1%")
     .panel.panel-default
       .panel-heading
-        strong #{settings.locale.net_masternodes}
+        strong #{settings.locale.net_connections}
       table#masternodes-table.table.table-bordered.table-striped
         thead
           tr
@@ -78,6 +80,7 @@ block content
             th.text-center #{settings.locale.mn_pubkey}
             th.text-center #{settings.locale.mn_address}
             th.text-center #{settings.locale.mn_enabled}
+            th.text-center #{settings.locale.mn_protocolversion}
             th.text-center #{settings.locale.mn_lastseen}
             th.text-center #{settings.locale.mn_activeseconds}
         tbody.text-center
