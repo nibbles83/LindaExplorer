@@ -1,5 +1,10 @@
 Note: All updates require the explorer to be restarted
 
+1.7.1 -> 1.7.2
+*  Addition of BTC-Alpha market.
+*  Formatting fix for Graviex market.
+*  Add protocolVersion to masternode monitor.
+
 1.7.0 -> 1.7.1
 *  Addition of Exchange markets arbitration data.
 *  Bugfix in rewards page for displaying small values.

@@ -34,7 +34,7 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 *  Added integration with custom Linda wallet RPC masternode commands.
 *  Added Linda Masternodes update/cleanup script in native node.js 
 
-Linda Explorer - 1.7.0
+Linda Explorer - 1.7.2
 ================
 
 An open source block explorer written in node.js.
