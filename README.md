@@ -2,6 +2,9 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 
 ### Latest Updates:
 
+#### 28/08/2018
+*  Tweaks of Bleutrade script to allow arbitrage.
+
 #### 15/08/2018
 *  Addition of BTC-Alpha market.
 *  Formatting fix for Graviex market.
