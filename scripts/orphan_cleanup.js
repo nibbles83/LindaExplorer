@@ -9,11 +9,10 @@ var hours = 1;
 
 function usage() {
 
-  console.log('Usage: node scripts/rewards.js update');
+  console.log('Usage: node scripts/orphan_cleanup.js clean');
   console.log('');
   console.log('mode: (required)');
-  console.log('update     Updates current reward stats');
-  console.log('clean      Clears masternodes older than 7 days');
+  console.log('clean      Clears orphan blocks received within the last x hours. Configure the hours by modifying \'hours\' in the script.');
   console.log('');
   process.exit(0);
 
