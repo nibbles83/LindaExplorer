@@ -226,32 +226,13 @@ html
               .panel-body(style="padding-top: 25px")
                 row.text-center
                   .col-md-12
-                    h1
-                      if settings.index.difficulty == 'Hybrid'
-                        label#hashrate -
-                        label#lblX1
-                      else
-                        label#hashrate -
-                      if settings.nethash_units == 'K'
-                        =" (KH/s)"
-                      else if settings.nethash_units == 'M'
-                        =" (MH/s)"
-                      else if settings.nethash_units == 'G'
-                        =" (GH/s)"
-                      else if settings.nethash_units == 'T'
-                        =" (TH/s)"
-                      else if settings.nethash_units == 'P'
-                        =" (PH/s)"
-                      else if settings.nethash_units == 'H'
-                        =" (H/s)"
-                    h3
-                      label #{settings.locale.difficulty}: &nbsp;
-                      if settings.index.difficulty == 'Hybrid'
-                        label#difficulty -
-                        <br>
-                        label#difficultyHybrid -
-                      else
-                        label#difficulty -
+                    label #{settings.locale.difficulty}: &nbsp;
+                    if settings.index.difficulty == 'Hybrid'
+                      label#difficulty -
+                      <br>
+                      label#difficultyHybrid -
+                    else
+                      h3#difficulty -
         if settings.display.masternodes == true
           .col-lg-2.col-md-4.col-sm-4
             .panel.panel-primary.panel-summary

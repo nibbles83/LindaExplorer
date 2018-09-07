@@ -39,91 +39,123 @@ dbString = dbString + ':' + settings.dbsettings.port;
 dbString = dbString + '/' + settings.dbsettings.database;
 
 mongoose.connect(dbString, function(err) {
-	if (err) {
-		console.log('Unable to connect to database: %s', dbString);
-		console.log('Aborting');
-		exit();
-	} else {
-		if (action == "update"){
-			console.log("getting last " + hours + " hours of rewards...");
-			db.get_last_txs6(hours, function (body) {
-			    lib.syncLoop(body.length, function (loop) {
-			      var i = loop.iteration();
-			      var tx = body[i].txid;
-			      db.find_reward_tx(tx,function(txid){
-		              	if (txid) {
-		 	           //console.log(txid + " found");
-				   loop.next();
-              		        } else {
-				
-                		if ( body[i].vout.length > 0 ) {
-		                  if ( body[i].vin.length == 0 ) {
-                		    if ( body[i].vout.length > 1 ) {
-		                      var poshalf = body[i].total / 2;
-                		      for ( var n=0;n<body[i].vout.length; n++ ){
-		                        if ( body[i].vout[n].amount > poshalf ){
-                          		  var amount = body[i].vout[n].amount;
-					  db.create_reward({
-                                	      txid: body[i].txid,
-                                     	      blockindex: body[i].blockindex,
-                                      	      blockhash: body[i].blockhash,
-                		              address: body[i].vout[n].addresses,
-                	                      amount: amount.toFixed(8),
-        	                              rewardType: "masternode",
-        	                              timestamp: body[i].timestamp
-	                                  }, function(){
-						console.log("Inserted MN Reward " + body[i].txid);
-                                          });
+        if (err) {
+                console.log('Unable to connect to database: %s', dbString);
+                console.log('Aborting');
+                exit();
+        } else {
+                if (action == "update"){
+                        console.log("getting last " + hours + " hours of rewards...");
+                        db.get_last_txs6(hours, function (body) {
+                            lib.syncLoop(body.length, function (loop) {
+                              var i = loop.iteration();
+                              var tx = body[i].txid;
+                              db.find_reward_tx(tx,function(txid){
+                                if (txid) {
+                                   //console.log(txid + " found");
+                                   loop.next();
+                                } else {
 
-                        		}else{
-					  var amount = body[i].vout[n].amount;
+                                if ( body[i].vout.length > 0 ) {
+                                  if ( body[i].vin.length == 0 ) {
+                                    if ( body[i].vout.length > 1 ) {
+									  if ( body[i].blockindex >= 580000 ) {
+                                      var mnreward = 320000000000;
+                                      for ( var n=0;n<body[i].vout.length; n++ ){
+                                        if ( body[i].vout[n].amount == mnreward ){
+                                          var amount = body[i].vout[n].amount;
                                           db.create_reward({
                                               txid: body[i].txid,
                                               blockindex: body[i].blockindex,
                                               blockhash: body[i].blockhash,
                                               address: body[i].vout[n].addresses,
                                               amount: amount.toFixed(8),
-                                              rewardType: "stake",
-        	                              timestamp: body[i].timestamp
-					   }, function(){
-						console.log("Inserted Stake Reward " + body[i].txid);
-                                           });
-
-					}
-                      		      }
-                    		    } else {
-                      		    	for ( var n=0;n<body[i].vout.length; n++ ) {
-                        		    var amount = body[i].vout[n].amount;
-                                          db.create_reward({
-                                              txid: body[i].txid,
-                                              blockindex: body[i].blockindex,
-                                              blockhash: body[i].blockhash,
-                                              address: body[i].vout[n].addresses,
-                                              amount: amount.toFixed(8),
-                                              rewardType: "stake",
-        	                              timestamp: body[i].timestamp
+                                              rewardType: "masternode",
+                                              timestamp: body[i].timestamp
                                           }, function(){
-						console.log("Inserted v2 Stake Reward " + body[i].txid);
+                                                console.log("Inserted MN Reward " + body[i].txid);
                                           });
-                      		        }
-                    		    }
-				    loop.next();
-                		  } else {
-					loop.next();
-				  }
-		                } else {
-					loop.next();
-				}
-		               }
-			      });
-		            }, function() {
-				exit();
-			    });
-			});
-		} else if (action == "clean"){
-			//db.clean_linda_nodes(function(){
-				exit();
-			}
-		}
+                                        }else{
+                                          var amount = body[i].vout[n].amount;
+                                          db.create_reward({
+                                              txid: body[i].txid,
+                                              blockindex: body[i].blockindex,
+                                              blockhash: body[i].blockhash,
+                                              address: body[i].vout[n].addresses,
+                                              amount: amount.toFixed(8),
+                                              rewardType: "stake",
+                                              timestamp: body[i].timestamp
+                                           }, function(){
+                                                console.log("Inserted Stake Reward " + body[i].txid);
+                                           });
+                                        }
+                                      }
+									} else {
+									var poshalf = body[i].total / 2;
+                                      for ( var n=0;n<body[i].vout.length; n++ ){
+                                        if ( body[i].vout[n].amount > poshalf ){
+                                          var amount = body[i].vout[n].amount;
+                                          db.create_reward({
+                                              txid: body[i].txid,
+                                              blockindex: body[i].blockindex,
+                                              blockhash: body[i].blockhash,
+                                              address: body[i].vout[n].addresses,
+                                              amount: amount.toFixed(8),
+                                              rewardType: "masternode",
+                                              timestamp: body[i].timestamp
+                                          }, function(){
+                                                console.log("Inserted MN Reward " + body[i].txid);
+                                          });
+
+                                        } else {
+                                          var amount = body[i].vout[n].amount;
+                                          db.create_reward({
+                                              txid: body[i].txid,
+                                              blockindex: body[i].blockindex,
+                                              blockhash: body[i].blockhash,
+                                              address: body[i].vout[n].addresses,
+                                              amount: amount.toFixed(8),
+                                              rewardType: "stake",
+                                              timestamp: body[i].timestamp
+                                           }, function(){
+                                                console.log("Inserted Stake Reward " + body[i].txid);
+                                           });
+                                        }
+                                      }
+									}
+                                    } else {
+                                        for ( var n=0;n<body[i].vout.length; n++ ) {
+                                            var amount = body[i].vout[n].amount;
+                                          db.create_reward({
+                                              txid: body[i].txid,
+                                              blockindex: body[i].blockindex,
+                                              blockhash: body[i].blockhash,
+                                              address: body[i].vout[n].addresses,
+                                              amount: amount.toFixed(8),
+                                              rewardType: "stake",
+                                              timestamp: body[i].timestamp
+                                          }, function(){
+                                                console.log("Inserted v2 Stake Reward " + body[i].txid);
+                                          });
+                                        }
+                                    }
+                                    loop.next();
+                                  } else {
+                                        loop.next();
+                                  }
+                                } else {
+                                        loop.next();
+                                }
+                               }
+                              });
+                            }, function() {
+                                exit();
+                            });
+                        });
+                } else if (action == "clean"){
+                        //db.clean_linda_nodes(function(){
+                                exit();
+                        }
+                }
 });
 
