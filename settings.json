@@ -155,7 +155,8 @@
   // Coin info page
   "coininfo": {
     "basic_info_links": [
-      ["Github", "https://github.com/Lindacoin/Linda"]
+      ["Github", "https://github.com/Lindacoin/Linda"],
+      ["Add Nodes", "https://lindaexplorer.kdhsolutions.co.uk/connectionlist.txt"]
     ],
     "masternode_required": 2000000,
     "block_time_sec": 90,
