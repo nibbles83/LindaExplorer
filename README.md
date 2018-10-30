@@ -3,6 +3,9 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 ### Latest Updates:
 
 #### 28/08/2018
+*  Added Idax market data integration.
+
+#### 28/08/2018
 *  Added script to find and remove orphan blocks from the DB. Use crontab to run it at interval.
 
 #### 28/08/2018

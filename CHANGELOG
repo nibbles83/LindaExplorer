@@ -1,6 +1,7 @@
 
 1.7.2
 *  Addition of BTC-Alpha market.
+*  Addition of Idax market.
 *  Formatting fix for Graviex market.
 *  Add protocolVersion to masternode monitor.
 
