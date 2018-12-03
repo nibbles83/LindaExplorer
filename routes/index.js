@@ -417,7 +417,7 @@ router.get('/ext/summary', function(req, res) {
       lib.get_connectioncount(function(connections){
         lib.get_blockcount(function(blockcount) {
           lib.get_masternodecount(function(masternodecount){
-            //lib.get_masternodeonlinecount(function(masternodeonlinecount){
+            lib.get_version(function(latestversion){
             db.get_linda_masternodes_count(function(mncount){
               db.get_cmc(settings.coinmarketcap.ticker, function(cmc){
                 db.get_stats(settings.coin, function (stats) {
@@ -439,10 +439,11 @@ router.get('/ext/summary', function(req, res) {
                     connections: connections,
                     blockcount: blockcount,
                     cmc: cmc,
+                    latestversion: latestversion,
                   }]});
                 });
               });
-            //});
+            });
             });
           });
         });

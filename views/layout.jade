@@ -43,8 +43,9 @@ html
             $("#cmc_market_cap").text(json.data[0].marketCapUsd);
             $("#cmc_volume_24h").text(json.data[0].marketVolumeUsd);
 
-            $("#lblConnections").text(json.data[0].connections + ' connections');
+            $("#lblConnections").text(json.data[0].connections);
             $("#lblBlockcountValue").text(json.data[0].blockcount);
+            $("#lblLatestVersion").text(json.data[0].latestversion);
 
 
             if (json.data[0].cmc) {
@@ -218,21 +219,22 @@ html
                 .row(style="margin:0;padding-left:0;padding-right:0")
                   .col-xs-3
                     span #{settings.locale.network}
-                  .col-xs-3
-                      label#lblBlockcount.label.label-default
-                        span#lblBlockcountValue -
-                          span  blocks
-                      label#lblConnections.label.label-default -
-              .panel-body(style="padding-top: 25px")
+              .panel-body(style="padding-top: 5px;padding-bottom: 5px")
                 row.text-center
                   .col-md-12
-                    label #{settings.locale.difficulty}: &nbsp;
-                    if settings.index.difficulty == 'Hybrid'
-                      label#difficulty -
-                      <br>
-                      label#difficultyHybrid -
-                    else
-                      h3#difficulty -
+                    p(style='margin:0;padding:0') Latest Release: &nbsp;
+                      label#lblLatestVersion
+                    p(style='margin:0;padding:0') Blockcount: &nbsp;
+                      label#lblBlockcountValue
+                    p(style='margin:0;padding:0') Connections: &nbsp;
+                      label#lblConnections
+                    p(style='margin:0;padding:0') #{settings.locale.difficulty}: &nbsp;
+                      if settings.index.difficulty == 'Hybrid'
+                        label#difficulty -
+                        br
+                        label#difficultyHybrid -
+                      else
+                        label#difficulty -
         if settings.display.masternodes == true
           .col-lg-2.col-md-4.col-sm-4
             .panel.panel-primary.panel-summary
