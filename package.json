@@ -26,7 +26,7 @@
     "markdown-js": "0.0.3",
     "mongodb": "2.0.45",
     "mongoose": "4.1.10",
-    "morgan": "~1.0.0",
+    "morgan": "~1.9.1",
     "qr-image": "~2.0.0",
     "request": "^2.88.0",
     "static-favicon": "~1.0.0",
