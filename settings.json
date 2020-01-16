@@ -5,15 +5,15 @@
 */
 {
   // name your instance!
-  "title": "Linda Explorer",
+  "title": "Metrix Explorer",
 
-  "address": "127.0.0.1:3001",
+  "address": "127.0.0.1:3002",
 
   // coin name
-  "coin": "LindaCoin",
+  "coin": "MetrixCoin",
 
   // coin symbol
-  "symbol": "LINDA",
+  "symbol": "MRX",
 
   // coin type
   //  Options:
@@ -41,15 +41,17 @@
   // port to listen for requests on.
   "port" : 80,
   "sslport" : 443,
+  //"port" : 8080,
+  //"sslport" : 8443,
 
   // database settings (MongoDB)
   "dbsettings": {
-    "user": "explorer_user",
-    "password": "explorer_pw",
+    "user": "exploreruser",
+    "password": "explorerpw",
     "database": "explorerdb",
-    "address": "localhost",
+    "address": "127.0.0.1",
     "port": 27017
-},
+  },
 
   //update script settings
   "update_timeout": 10,
@@ -76,8 +78,8 @@
     "richlist": true,
     "twitter": true,
     "facebook": true,
-    "discord": true,
     "googleplus": false,
+    "discord": true,
     "search": true,
     "movement": true,
     "network": true,
@@ -91,9 +93,8 @@
   "index": {
     "show_hashrate": true,
     "show_coin_supply": true,
-    "difficulty": "Hybrid",
-    "last_txs": 100,
-    "last_txs24": 1500
+    "difficulty": "POS",
+    "last_txs": 100
   },
 
   // ensure links on API page are valid
@@ -105,15 +106,15 @@
   },
 
   // market settings
-  //supported markets: bittrex, btcalpha, poloniex, yobit, graviex, empoex, bleutrade, cryptopia, ccex, coinexchange, idax
+  //supported markets: bittrex, poloniex, yobit, graviex, empoex, bleutrade, cryptopia, ccex, coinexchange, idax
   //default market is loaded by default and determines last price in header
   "markets": {
-    "coin": "LINDA",
+    "coin": "MRX",
     "exchange": "BTC",
-    "enabled": ["cryptopia","coinexchange","graviex"],
+    "enabled": ["altilly","crex24"],
     "cryptopia_id": "5246",
     "ccex_key" : "Get-Your-Own-Key",
-    "default": "cryptopia",
+    "default": "crex24",
     "coinexchange_id": "390"
   },
 
@@ -155,8 +156,9 @@
   // Coin info page
   "coininfo": {
     "basic_info_links": [
-      ["Github", "https://github.com/Lindacoin/Linda"],
-      ["Add Nodes", "https://lindaexplorer.kdhsolutions.co.uk/connectionlist.txt"]
+      ["Github", "https://github.com/TheLindaProjectInc/Metrix"],
+      ["Add Nodes", "https://metrixexplorer.kdhsolutions.co.uk/connectionlist.txt"],
+      ["Bootstrap", "https://metrixcoin.com/bootstrap"]
     ],
     "masternode_required": 2000000,
     "block_time_sec": 90,
@@ -165,14 +167,14 @@
 
   // CoinMarketCap integration
   "coinmarketcap": {
-    "ticker": "LINDA"
+    "ticker": "metrix-coin"
   },
 
   // twitter, facebook, googleplus
   "twitter": "Lindaproject",
   "facebook": "lindacoincurrency",
-  "discord": "VfRXJA9",
   "googleplus": "yourgooglepluspage",
+  "discord": "VfRXJA9",
 
   //genesis
   "genesis_tx": "4080031d1fd26d68fa953d7a5c1dac3b2618b56d8a3fa35dd4678bdeb0946671",
@@ -213,6 +215,9 @@
   // type (optional) = class of label, valid types: default, primary, warning, danger, success
   // url (optional) = url to link to for more information
   "labels": {
+	"LbQwZbTN2K8ypHuRKNhdq5sv1hkWNJZnZX": {"label": "Cryptopia Cold Storage"},
+	"LX3iaYr4ZhPEEPrKmcVMogqQuGWVkt2X1k": {"label": "Pool Wallet"},
+	"LZSTWiBLeq6JwaPHWFAWG8acURC2Rgt4HV": {"label": "LindaX Presale"}
   //  "JSoEdU717hvz8KQVq2HfcqV9A79Wihzusu": {"label": "Developers address", "type":"primary", "url":"http://example.com"},
   //  "JSWVXHWeYNknPdG9uDrcBoZHztKMFCsndw": {"label": "Cryptsy"}
   }

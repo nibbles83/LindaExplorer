@@ -1,5 +1,13 @@
 Note: All updates require the explorer to be restarted
 
+1.7.2 -> 1.7.3
+*  Addition of Altilly market
+*  Addition of Crex24 market
+*  Expand the richlist to Top 200 and rework graphics
+*  Add a bunch of cleanup scripts/orphan locators
+*  Rebrand to Metrixcoin
+*  Update the Linda theme with Metrix colours
+
 1.7.1 -> 1.7.2
 *  Addition of BTC-Alpha market.
 *  Addition of Idax market.

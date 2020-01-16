@@ -2,6 +2,14 @@ This explorer is forked from Luke's Explorer v1.6.1 (https://github.com/iquidus/
 
 ### Latest Updates:
 
+#### 16/01/2019
+*  Addition of Altilly market
+*  Addition of Crex24 market
+*  Expand the richlist to Top 200 and rework graphics
+*  Add a bunch of cleanup scripts/orphan locators
+*  Rebrand to Metrixcoin
+*  Update the Linda theme with Metrix colours
+
 #### 28/08/2018
 *  Added Idax market data integration.
 

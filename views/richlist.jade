@@ -4,11 +4,11 @@ block content
   script.
     $(document).ready(function(){
       var data = [
-      ['Top 1-25', !{dista.percent}],['Top 26-50', !{distb.percent}],['Top 51-75', !{distc.percent}],['Top 76-100', !{distd.percent}],['101+', !{diste.percent}]
+      ['Top 1-25', !{dista.percent}],['Top 26-50', !{distb.percent}],['Top 51-75', !{distc.percent}],['Top 76-100', !{distd.percent}],['Top 101-200', !{diste.percent}],['201+', !{distf.percent}]
       ];
       var pieWealthDist = $.jqplot('pieChart', [data],
         {
-          seriesColors: [ "#d9534f", "#5cb85c", "#428bca", "#222", "#CCC"],
+          seriesColors: [ "#d9534f", "#5cb85c", "#428bca", "#222", "#b19cd9", "#CCC"],
           series: [{
             // Make this a pie chart.
             renderer: $.jqplot.PieRenderer,
@@ -92,6 +92,12 @@ block content
                   span #{settings.locale.rl_top100}
                 td.text-right #{parseFloat(distd.total).toFixed(8)}
                 td.text-center #{parseFloat(distd.percent).toFixed(2)}
+              tr
+                th
+                  div.pull-left(style='background-color:#b19cd9;width:20px;height:20px;margin-right:6px;')
+                  span #{settings.locale.rl_top200}
+                td.text-right #{parseFloat(diste.total).toFixed(8)}
+                td.text-center #{parseFloat(diste.percent).toFixed(2)}
               tr
                 th
                   span #{settings.locale.total}
